@@ -38,8 +38,10 @@ public class MovieBooking {
                 showSeats();
 
                 System.out.println("1. Reserve Seat");
-                System.out.println("2. Exit");
+                System.out.println("2. Cancel Seat");
+                System.out.println("3. Exit");
                 System.out.print("Enter choice: ");
+
                 int choice = sc.nextInt();
 
                 if (choice == 1) {
@@ -61,10 +63,35 @@ public class MovieBooking {
                     String update = "UPDATE Ticket SET Seat = 0 WHERE RowNumber = " + row + " AND SeatNumber = " + col;
                     stmt.executeUpdate(update);
                     System.out.println("✅ Seat booked successfully!");
-                } else if (choice == 2) {
+                } 
+                
+                else if (choice == 2) {
+                    System.out.print("Enter row (1-5): ");
+                    int row = sc.nextInt();
+                    System.out.print("Enter seat number (1-10): ");
+                    int col = sc.nextInt();
+
+                    if (row < 1 || row > 5 || col < 1 || col > 10) {
+                        System.out.println("❌ Invalid seat!");
+                        continue;
+                    }
+
+                    if (seats[row - 1][col - 1] == 1) {
+                        System.out.println("❌ Seat is already free!");
+                        continue;
+                    }
+
+                    String update = "UPDATE Ticket SET Seat = 1 WHERE RowNumber = " + row + " AND SeatNumber = " + col;
+                    stmt.executeUpdate(update);
+                    System.out.println("✅ Seat canceled successfully!");
+                }
+                
+                else if (choice == 3) {
                     exit = true;
                     System.out.println("👋 Exiting. Thank you!");
-                } else {
+                } 
+                
+                else {
                     System.out.println("❌ Invalid option.");
                 }
             }
@@ -102,8 +129,3 @@ public class MovieBooking {
         System.out.println();
     }
 }
-
-
-
-
-
