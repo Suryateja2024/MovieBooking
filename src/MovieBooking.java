@@ -123,7 +123,7 @@ public class MovieBooking {
     }
 
     static void showSeats(int screenNum) {
-        System.out.println("\n🎬 Seat Layout for Screen " + screenNum + ":");
+        System.out.println("\n Seat Layout for Screen " + screenNum + ":");
         System.out.print("    ");
         for (int i = 1; i <= 10; i++) System.out.print(i + " ");
         System.out.println();
